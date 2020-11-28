@@ -30,19 +30,19 @@ sensors = OrderedDict([("temp_1", {  # DS18B20 Temperature Sensor
 
 def create_database():
 
-    conn = mariadb.connect(user=username,
+    connection = mariadb.connect(user=username,
                            password=password,
                            host=servername)
-    curs = conn.cursor()
+    cursor = connection.cursor()
     try:
-        curs.execute("SET sql_notes = 0; ")  # Hide Warnings
-        curs.execute("CREATE DATABASE IF NOT EXISTS {}".format(dbname))
-        curs.execute("SET sql_notes = 1; ")  # Show Warnings
+        cursor.execute("SET sql_notes = 0; ")  # Hide Warnings
+        cursor.execute("CREATE DATABASE IF NOT EXISTS {}".format(dbname))
+        cursor.execute("SET sql_notes = 1; ")  # Show Warnings
     except mariadb.Error as error:
         print("Error: {}".format(error))
         pass
-    conn.commit()
-    conn.close()
+    connection.commit()
+    connection.close()
     return
 
 def open_database_connection():
@@ -159,6 +159,8 @@ servername = "localhost"
 username = "getmeoffgrid"
 password = "/home/pi/Documents/sample.txt"
 dbname = "sensors"
+
+loops = 0
 
 while True:  # Repeat the code indefinitely
 
