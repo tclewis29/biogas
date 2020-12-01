@@ -157,7 +157,7 @@ def read_sensors():
 
 servername = "localhost"
 username = "getmeoffgrid"
-password = "/home/pi/Documents/sample.txt"
+password = ""
 dbname = "sensors"
 
 loops = 0
